@@ -1,0 +1,37 @@
+{
+  "name": "tothenew-playwright-lambdatest",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "test": "playwright test --project=local-chrome",
+    "test:local": "playwright test --project=local-chrome",
+    "test:local:mobile": "cross-env MOBILE=true playwright test",
+    "test:local:iphone": "cross-env MOBILE=true playwright test --project=local-iphone",
+    "test:local:android": "cross-env MOBILE=true playwright test --project=local-android",
+    "test:local:ipad": "cross-env MOBILE=true playwright test --project=local-ipad",
+    "test:local:all": "cross-env MOBILE=all playwright test",
+    "test:local:headed": "cross-env HEADED=true playwright test --project=local-chrome",
+    "test:local:mobile:headed": "cross-env MOBILE=true HEADED=true playwright test",
+    "test:local:debug": "cross-env HEADED=true VISUAL_DEBUG=true playwright test --project=local-chrome",
+    "test:local:ui": "playwright test --project=local-chrome --ui",
+    "test:cloud": "cross-env CLOUD=true playwright test --project=chrome",
+    "test:cloud:desktop": "cross-env CLOUD=true playwright test --project=chrome --project=safari --project=firefox",
+    "test:cloud:all-browsers": "cross-env CLOUD=true playwright test --project=chrome --project=safari --project=firefox",
+    "test:live": "playwright test --reporter=line",
+    "test:headed": "cross-env HEADED=true playwright test --project=local-chrome",
+    "test:ui": "playwright test --ui",
+    "test:chrome": "cross-env CLOUD=true playwright test --project=chrome",
+    "test:firefox": "cross-env CLOUD=true playwright test --project=firefox",
+    "test:safari": "cross-env CLOUD=true playwright test --project=safari",
+    "report": "playwright show-report",
+    "check": "tsc --noEmit",
+    "check:lambdatest": "cross-env CLOUD=true playwright test --project=chrome --list"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.57.0",
+    "@types/node": "^24.0.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^17.2.2",
+    "typescript": "^5.9.2"
+  }
+}
