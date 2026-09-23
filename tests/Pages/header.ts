@@ -132,4 +132,40 @@ export class Header {
             link.evaluate((element) => (element as HTMLAnchorElement).click())
         ]);
     }
+
+    async clickLeadership() {
+        const isDesktopNavVisible = await this.whoWeAre.isVisible();
+
+        if (!isDesktopNavVisible) {
+            await this.page.goto('/leadership', { waitUntil: 'domcontentloaded', timeout: 60_000 });
+            return;
+        }
+
+        await this.openWhoWeAreMenu();
+
+        const link = this.siteHeader.locator('nav a[href="/leadership"]').first();
+        await link.waitFor({ state: 'visible' });
+        await Promise.all([
+            this.page.waitForURL('**/leadership**'),
+            link.evaluate((element) => (element as HTMLAnchorElement).click())
+        ]);
+    }
+
+    async clickPartners() {
+        const isDesktopNavVisible = await this.whoWeAre.isVisible();
+
+        if (!isDesktopNavVisible) {
+            await this.page.goto('/partners', { waitUntil: 'domcontentloaded', timeout: 60_000 });
+            return;
+        }
+
+        await this.openWhoWeAreMenu();
+
+        const link = this.siteHeader.locator('nav a[href="/partners"], nav a[href*="/partners"]').first();
+        await link.waitFor({ state: 'visible' });
+        await Promise.all([
+            this.page.waitForURL('**/partners**'),
+            link.evaluate((element) => (element as HTMLAnchorElement).click())
+        ]);
+    }
 }
